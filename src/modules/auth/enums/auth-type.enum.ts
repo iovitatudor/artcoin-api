@@ -1,4 +1,4 @@
 export enum AuthTypeEnum {
-  specialist = "specialist",
+  seller = "seller",
   user = "user",
 }

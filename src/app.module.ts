@@ -7,22 +7,19 @@ import { UsersModule } from "./modules/users/users.module";
 import { User } from "./modules/users/entities/user.entity";
 import { FilesModule } from "./common/files/files.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
-import { OrganizationsModule } from "./modules/organizations/organizations.module";
-import { Organization } from "./modules/organizations/entities/organization.entity";
-import { SpecialistsModule } from "./modules/specialists/specialists.module";
-import { Specialist } from "./modules/specialists/entities/specialist.entity";
-import { NotificationsModule } from "./modules/notifications/notifications.module";
-import { Notification } from "./modules/notifications/entities/notification.entity";
-import { TasksModule } from "./modules/tasks/tasks.module";
-import { TaskType } from "./modules/tasks/entities/task-type.entity";
-import { Task } from "./modules/tasks/entities/task.entity";
+import { SellersModule } from "./modules/sellers/sellers.module";
+import { Seller } from "./modules/sellers/entities/sellers.entity";
 import { AuthModule } from "./modules/auth/auth.module";
+import { Category } from "./modules/categories/entities/categories.entity";
+import { CategoriesModule } from "./modules/categories/categories.module";
+import { Product } from "./modules/products/entities/products.entity";
+import { ProductsModule } from "./modules/products/products.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: "./.env",
-      isGlobal: true,
+      isGlobal: true
     }),
     TypeOrmModule.forRoot({
       type: "postgres",
@@ -30,24 +27,23 @@ import { AuthModule } from "./modules/auth/auth.module";
       port: Number(process.env.DB_PORT),
       password: process.env.DB_PASSWORD,
       username: process.env.DB_USERNAME,
-      entities: [User, Organization, Specialist, Notification, TaskType, Task],
+      entities: [User, Seller, Category, Product],
       database: process.env.DB_DATABASE,
       synchronize: true,
-      logging: true,
+      logging: true
     }),
     ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, "../uploads"),
+      rootPath: path.resolve(__dirname, "../uploads")
     }),
     FilesModule,
     UsersModule,
-    OrganizationsModule,
-    SpecialistsModule,
-    NotificationsModule,
-    TasksModule,
+    SellersModule,
     AuthModule,
+    CategoriesModule,
+    ProductsModule
   ],
   controllers: [],
-  providers: [],
+  providers: []
 })
 export class AppModule {
 }

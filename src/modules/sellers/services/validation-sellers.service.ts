@@ -1,14 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Not, Repository } from "typeorm";
-import { User } from "../entities/user.entity";
+import { Seller } from "../entities/sellers.entity";
 
 @Injectable()
-export class ValidationUsersService {
+export class ValidationSellersService {
   private readonly validRegex: RegExp;
 
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>
+    @InjectRepository(Seller) private readonly SpecialistRepository: Repository<Seller>,
   ) {
     this.validRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
   }
@@ -22,20 +22,20 @@ export class ValidationUsersService {
     if (!this.validRegex.test(email)) {
       throw new HttpException(
         "Please provide valid Email.",
-        HttpStatus.BAD_REQUEST
+        HttpStatus.BAD_REQUEST,
       );
     }
     return true;
   }
 
   async validateUniqueEmail(email: string, id: number = 0): Promise<boolean> {
-    const users = await this.userRepository.find({
-      where: { email, id: Not(id) }
+    const specialists = await this.SpecialistRepository.find({
+      where: { email, id: Not(id) },
     });
-    if (users.length > 0) {
+    if (specialists.length > 0) {
       throw new HttpException(
         "This email is already taken.",
-        HttpStatus.BAD_REQUEST
+        HttpStatus.BAD_REQUEST,
       );
     }
     return true;

@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle("BlockAids API")
+    .setTitle("Artcoin API")
     .setVersion("1.0")
     .build();
   const document = SwaggerModule.createDocument(app, config);

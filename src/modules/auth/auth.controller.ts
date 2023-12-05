@@ -15,7 +15,7 @@ import { LoginAuthDto } from "./dto/login-auth.dto";
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @ApiOperation({ summary: "Register new user/specialist" })
+  @ApiOperation({ summary: "Register new user/seller" })
   @ApiResponse({ status: 200, description: "Application Token" })
   @UsePipes(ValidationPipe)
   @Post("/register")
@@ -23,7 +23,7 @@ export class AuthController {
     return await this.authService.register(registerAuthDto);
   }
 
-  @ApiOperation({ summary: "Login user/specialist" })
+  @ApiOperation({ summary: "Login user/seller" })
   @ApiResponse({ status: 201, description: "Application Token" })
   @Post("/login")
   public async login(@Body() loginAuthDto: LoginAuthDto): Promise<object> {

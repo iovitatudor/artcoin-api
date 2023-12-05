@@ -36,7 +36,7 @@ export class RegisterAuthDto {
   })
   password: string;
 
-  @ApiProperty({ example: AuthTypeEnum.specialist })
+  @ApiProperty({ example: AuthTypeEnum.seller })
   @IsString()
   @IsEnum([...Object.values(AuthTypeEnum)])
   type: string;

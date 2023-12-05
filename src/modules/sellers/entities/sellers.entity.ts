@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
-export class User {
+export class Seller {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -11,9 +11,6 @@ export class User {
 
   @Column({ type: "varchar", length: 40 })
   email: string;
-
-  @Column({ type: "varchar", length: 40, nullable: true })
-  phone: string;
 
   @Column({ type: "varchar" })
   password: string;

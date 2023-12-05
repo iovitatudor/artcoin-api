@@ -5,15 +5,23 @@ import {
   IsString,
   Matches,
   MinLength,
-  ValidateIf
+  ValidateIf,
 } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
+import { CreateSellerDto } from "./create-seller.dto";
+
 
 const passwordRegEx =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
-export class UpdateUserDto {
-  @ApiProperty({ example: "John Smith", required: false })
+export class UpdateSellerDto extends PartialType(CreateSellerDto) {
+  @ApiProperty({ example: 1 })
+  @ValidateIf((o) => "organizationId" in o)
+  @IsString()
+  @IsNotEmpty()
+  organizationId: string;
+
+  @ApiProperty({ example: "John Doe", required: false })
   @ValidateIf((o) => "name" in o)
   @IsString()
   @MinLength(2, { message: "Name must have at least 2 characters." })
@@ -25,12 +33,6 @@ export class UpdateUserDto {
   @IsNotEmpty()
   @IsEmail({}, { message: "Please provide valid Email." })
   email: string;
-
-  @ApiProperty({ example: "+3736091232", required: false })
-  @ValidateIf((o) => "phone" in o)
-  @IsString()
-  @IsNotEmpty()
-  phone: string;
 
   @ApiProperty({ format: "binary", required: false })
   @ValidateIf((o) => "avatar" in o)
@@ -46,7 +48,7 @@ export class UpdateUserDto {
     at least one uppercase letter, 
     one lowercase letter, 
     one number and 
-    one special character`
+    one special character`,
   })
   password: string;
 }
