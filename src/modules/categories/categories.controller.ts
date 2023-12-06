@@ -6,13 +6,13 @@ import {
   Patch,
   Param,
   Delete,
-  HttpCode,
+  HttpCode
 } from "@nestjs/common";
 import {
   ApiNoContentResponse,
   ApiOperation,
   ApiResponse,
-  ApiTags,
+  ApiTags
 } from "@nestjs/swagger";
 import { CreateCategoryDto } from "./dto/create-category.dto";
 import { UpdateCategoryDto } from "./dto/update-category.dto";
@@ -33,7 +33,6 @@ export class CategoriesController {
   async findAll() {
     const categories = await this.categoriesService.findAll();
     return CategoryResource.collect(categories);
-    // return categories;
   }
 
   @ApiResponse({ status: 200, type: CategoryResource })
@@ -50,9 +49,8 @@ export class CategoriesController {
   async create(
     @Body() createCategoryDto: CreateCategoryDto
   ) {
-    const createdCategory = await this.categoriesService.create(
-      createCategoryDto
-    );
+    const createdCategory =
+      await this.categoriesService.create(createCategoryDto);
 
     const category = await this.categoriesService.findOne(
       createdCategory.id

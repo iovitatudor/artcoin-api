@@ -57,7 +57,7 @@ export class Product {
   @Column({ type: "integer", default: 0 })
   price: number;
 
-  @Column({ type: "varchar", length: 255, default: "avatar-mock.png" })
+  @Column({ type: "varchar", length: 255, default: "image-mock.png" })
   image: string;
 
   @CreateDateColumn({

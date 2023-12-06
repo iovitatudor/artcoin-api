@@ -5,7 +5,7 @@ import {
   IsString,
   Matches,
   MinLength,
-  ValidateIf,
+  ValidateIf
 } from "class-validator";
 
 import { ApiProperty } from "@nestjs/swagger";
@@ -32,7 +32,7 @@ export class CreateSellerDto {
 
   @ApiProperty({
     format: "binary",
-    required: false,
+    required: false
   })
   @ValidateIf((o) => "avatar" in o)
   @IsOptional()
@@ -45,7 +45,7 @@ export class CreateSellerDto {
     at least one uppercase letter, 
     one lowercase letter, 
     one number and 
-    one special character`,
+    one special character`
   })
   password: string;
 }

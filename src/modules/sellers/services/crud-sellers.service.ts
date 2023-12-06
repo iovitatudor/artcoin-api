@@ -16,10 +16,7 @@ export class CrudSellersService {
   ) {
   }
 
-  async create(
-    createSpecialistDto: CreateSellerDto,
-    avatar,
-  ): Promise<Seller> {
+  async create(createSpecialistDto: CreateSellerDto, avatar): Promise<Seller> {
     try {
       if (avatar) {
         createSpecialistDto.avatar = await this.fileService.createFile(avatar);
@@ -69,7 +66,7 @@ export class CrudSellersService {
   async update(
     id: number,
     updateSpecialistDto: UpdateSellerDto,
-    avatar,
+    avatar
   ): Promise<UpdateResult> {
     try {
       if (avatar) {
@@ -78,7 +75,7 @@ export class CrudSellersService {
       if (updateSpecialistDto.password) {
         updateSpecialistDto.password = await bcrypt.hash(
           updateSpecialistDto.password,
-          5,
+          5
         );
       }
       return await this.specialistRepository.update(id, updateSpecialistDto);

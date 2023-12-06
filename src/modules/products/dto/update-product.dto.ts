@@ -1,6 +1,7 @@
 import {
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   MinLength,
   ValidateIf
@@ -81,4 +82,12 @@ export class UpdateProductDto {
   @IsNotEmpty()
   @ValidateIf((o) => "price" in o)
   price: number;
+
+  @ApiProperty({
+    format: "binary",
+    required: false
+  })
+  @ValidateIf((o) => "image" in o)
+  @IsOptional()
+  image: string;
 }

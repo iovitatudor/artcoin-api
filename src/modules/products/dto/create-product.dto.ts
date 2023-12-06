@@ -1,9 +1,10 @@
 import {
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   MinLength,
-  ValidateIf,
+  ValidateIf
 } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { AvailabilityEnum } from "../enums/availability.enum";
@@ -80,4 +81,12 @@ export class CreateProductDto {
   @IsNotEmpty()
   @ValidateIf((o) => "price" in o)
   price: number;
+
+  @ApiProperty({
+    format: "binary",
+    required: false
+  })
+  @ValidateIf((o) => "image" in o)
+  @IsOptional()
+  image: string;
 }
