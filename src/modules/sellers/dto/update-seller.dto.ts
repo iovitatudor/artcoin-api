@@ -5,7 +5,7 @@ import {
   IsString,
   Matches,
   MinLength,
-  ValidateIf,
+  ValidateIf
 } from "class-validator";
 import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { CreateSellerDto } from "./create-seller.dto";
@@ -15,12 +15,6 @@ const passwordRegEx =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 export class UpdateSellerDto extends PartialType(CreateSellerDto) {
-  @ApiProperty({ example: 1 })
-  @ValidateIf((o) => "organizationId" in o)
-  @IsString()
-  @IsNotEmpty()
-  organizationId: string;
-
   @ApiProperty({ example: "John Doe", required: false })
   @ValidateIf((o) => "name" in o)
   @IsString()
@@ -48,7 +42,7 @@ export class UpdateSellerDto extends PartialType(CreateSellerDto) {
     at least one uppercase letter, 
     one lowercase letter, 
     one number and 
-    one special character`,
+    one special character`
   })
   password: string;
 }

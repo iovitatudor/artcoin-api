@@ -49,7 +49,6 @@ export class AuthService {
         {
           ...registerAuthDto,
           avatar: "avatar-mock.png",
-          organizationId: "1"
         },
         null
       );

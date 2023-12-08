@@ -14,11 +14,6 @@ const passwordRegEx =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 export class CreateSellerDto {
-  @ApiProperty({ example: 1 })
-  @IsString()
-  @IsNotEmpty()
-  organizationId: string;
-
   @ApiProperty({ example: "John Doe" })
   @IsString()
   @MinLength(2, { message: "Name must have at least 2 characters." })
